@@ -1,28 +1,39 @@
-import { Web3Storage, File as W3File } from 'web3.storage';
+import { Web3Storage, File } from 'web3.storage';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as dotenv from 'dotenv';
 
-// Load environment variables from .env
+// Load environment variables from .env if present
 dotenv.config();
 
-// Get your Web3.Storage API token from the environment
-const token = process.env.WEB3_STORAGE_TOKEN;
-if (!token) {
-  throw new Error('WEB3_STORAGE_TOKEN is not provided');
+/**
+ * Return the Web3.Storage API token from environment variables.
+ */
+function getAccessToken(): string {
+  return process.env.WEB3_STORAGE_TOKEN || '';
 }
 
-// Initialize Web3.Storage client
-const client = new Web3Storage({ token });
-
 /**
- * Upload a file or data buffer to Web3.Storage and return an IPFS URI.
+ * Store a file on IPFS via Web3.Storage.
  *
- * @param name - The filename to use for the uploaded file
- * @param content - The content to upload; can be a string or Uint8Array
- * @returns The IPFS URI of the uploaded content
+ * This helper wraps the web3.storage client and uploads the given file.  It returns
+ * an ipfs URI (e.g. ipfs://<cid>) that can be stored in your NFT metadata.  Note
+ * that you must set the `WEB3_STORAGE_TOKEN` environment variable with a valid
+ * API token from web3.storage.  See https://web3.storage/docs/how-tos/store/
+ * for details on obtaining a token.
+ *
+ * @param filePath Path to the file to upload.
+ * @returns The ipfs URI for the stored file.
  */
-export async function uploadToIPFS(name: string, content: Uint8Array | string): Promise<string> {
-  const data = typeof content === 'string' ? new TextEncoder().encode(content) : content;
-  const file = new W3File([data], name);
-  const cid = await client.put([file]);
-  return `ipfs://${cid}/${encodeURIComponent(name)}`;
+export async function storeFile(filePath: string): Promise<string> {
+  const token = getAccessToken();
+  if (!token) {
+    throw new Error('WEB3_STORAGE_TOKEN environment variable is not set');
+  }
+  const storage = new Web3Storage({ token });
+  const content = await fs.promises.readFile(filePath);
+  const file = new File([content], path.basename(filePath));
+  // Wrap withDirectory: false so the returned CID points directly to the file
+  const cid = await storage.put([file], { wrapWithDirectory: false });
+  return `ipfs://${cid}`;
 }

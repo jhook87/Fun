@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
 /// @title Provenance721
-/// @notice ERC-721 token that anchors a content hash on chain and allows
-///         both owner-gated minting and EIP-712 signed minting by authors.
+/// @notice ERC‑721 token that anchors a content hash on chain and allows
+///         both owner‑gated minting and EIP‑712 signed minting by authors.
 ///         Each contentHash can only be minted once, enforcing uniqueness.
 contract Provenance721 is ERC721, Ownable, EIP712 {
     struct Record {
@@ -24,10 +24,10 @@ contract Provenance721 is ERC721, Ownable, EIP712 {
     // Next token identifier to mint
     uint256 public nextId = 1;
 
-    // Nonces used for EIP-712 mint requests per author address
+    // Nonces used for EIP‑712 mint requests per author address
     mapping(address => uint256) public nonces;
 
-    /// @dev Typehash for the MintRequest struct used in EIP-712
+    /// @dev Typehash for the MintRequest struct used in EIP‑712
     bytes32 private constant MINTREQUEST_TYPEHASH = keccak256(
         "MintRequest(bytes32 contentHash,string metadataURI,address to,address author,uint256 nonce,uint256 deadline)"
     );
@@ -37,13 +37,13 @@ contract Provenance721 is ERC721, Ownable, EIP712 {
     /// @notice Emitted when a token's revoked flag is toggled
     event Revoked(uint256 indexed tokenId);
 
-    /// @param name Name for ERC-721 token
-    /// @param symbol Symbol for ERC-721 token
+    /// @param name Name for ERC‑721 token
+    /// @param symbol Symbol for ERC‑721 token
     constructor() ERC721("Provenance721", "PRV") EIP712("Provenance721", "1") {}
 
-    /// @notice Owner-gated mint. Mints a token for a unique content hash.
+    /// @notice Owner‑gated mint. Mints a token for a unique content hash.
     /// @param contentHash Bytes32 digest of the content
-    /// @param metadataURI URI pointing to off-chain metadata (IPFS/Arweave/HTTP)
+    /// @param metadataURI URI pointing to off‑chain metadata (IPFS/Arweave/HTTP)
     /// @param to Address to receive the minted token
     function mint(bytes32 contentHash, string calldata metadataURI, address to) external onlyOwner returns (uint256) {
         require(contentHash != bytes32(0), "bad hash");
@@ -56,7 +56,7 @@ contract Provenance721 is ERC721, Ownable, EIP712 {
         return tid;
     }
 
-    /// @notice Mint request used for EIP-712 signed minting
+    /// @notice Mint request used for EIP‑712 signed minting
     struct MintRequest {
         bytes32 contentHash;
         string metadataURI;
@@ -66,7 +66,7 @@ contract Provenance721 is ERC721, Ownable, EIP712 {
         uint256 deadline;
     }
 
-    /// @dev Compute the hash of a MintRequest for EIP-712
+    /// @dev Compute the hash of a MintRequest for EIP‑712
     function _hash(MintRequest calldata req) internal view returns (bytes32) {
         return _hashTypedDataV4(
             keccak256(
@@ -83,7 +83,7 @@ contract Provenance721 is ERC721, Ownable, EIP712 {
         );
     }
 
-    /// @notice Mint a token with an author-signed request. Anyone can submit the request as long as the signature is valid.
+    /// @notice Mint a token with an author‑signed request. Anyone can submit the request as long as the signature is valid.
     /// @param req The mint request
     /// @param signature Author's signature over the typed data
     function mintWithSig(MintRequest calldata req, bytes calldata signature) external returns (uint256) {

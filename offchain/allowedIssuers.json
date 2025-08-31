@@ -1,3 +1,6 @@
-[
-  "did:web:issuer.example"
-]
+{
+  "issuers": [
+    "did:example:trustedIssuer1",
+    "did:example:trustedIssuer2"
+  ]
+}

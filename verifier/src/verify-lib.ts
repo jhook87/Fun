@@ -10,7 +10,7 @@ import { createVerify } from "did-jwt";
 import * as fs from 'fs/promises';
 
 /*
-  verifyAll verifies that a given file matches the on-chain record, that the
+  verifyAll verifies that a given file matches the on‑chain record, that the
   author signature is valid, and (optionally) that the Verifiable Credential
   is valid and not revoked. The caller must provide the RPC endpoint,
   contract address and tokenId. This function returns a structured result
@@ -42,7 +42,7 @@ export async function verifyAll({ contentBytes, rpc, contractAddr, tokenId }: {
   // 3) Fetch metadata
   const meta = await fetchJSON(rec.metadataURI);
 
-  // 3b) Load allow-listed VC issuers if configured
+  // 3b) Load allow‑listed VC issuers if configured
   let allowedIssuers: string[] = [];
   try {
     // Attempt to read offchain/allowedIssuers.json from this package.  When
@@ -98,7 +98,7 @@ export async function verifyAll({ contentBytes, rpc, contractAddr, tokenId }: {
         }
       }
 
-      // Enforce issuer allow-list if defined
+      // Enforce issuer allow‑list if defined
       if (allowedIssuers.length > 0) {
         const issuer = (vc?.issuer?.id || vc?.issuer) as string;
         if (!issuer || !allowedIssuers.includes(issuer)) {
