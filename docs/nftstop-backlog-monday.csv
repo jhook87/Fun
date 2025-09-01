@@ -1,0 +1,23 @@
+Phase,Epic,Story / Task,Description,Priority,Status
+Phase 1 – MVP & Testnet,Minting & Verification,Mint media as NFT,"As a creator I want to mint media as an NFT so I can prove originality.",High,Done
+Phase 1 – MVP & Testnet,Minting & Verification,Verify authenticity,"As a consumer I want to upload media and verify its authenticity so I know it’s genuine.",High,Done
+Phase 1 – MVP & Testnet,Dashboard Basics,View mint/verify counts,"As an admin I want to see counts of mints and verifications so I can measure adoption.",Medium,Done
+Phase 1 – MVP & Testnet,Auth & Rate Limits,Use API key,"As a partner dev I want API key authentication and throttling so I can safely integrate.",High,Done
+Phase 2 – Public Beta,Wallet Flow & Testnet Deployment,Connect wallet to mint,"As a creator I want to connect my wallet and mint directly on Base Sepolia.",High,In Progress
+Phase 2 – Public Beta,Wallet Flow & Testnet Deployment,Verify tokens from testnet,"As a consumer I want to verify tokens from the testnet in my browser.",High,In Progress
+Phase 2 – Public Beta,Embeddable Verification Widget,Embed verify button,"As a site owner I want to embed a Verify with NFTStop button so my readers can check media.",High,In Progress
+Phase 2 – Public Beta,Improved Dashboard,Export CSV metrics,"As an org admin I want charts and CSV exports so I can analyze content authenticity over time.",Medium,In Progress
+Phase 2 – Public Beta,SEO & Landing Pages,SEO optimization,"As a visitor I want clear SEO-optimized pages so I discover NFTStop when I search deepfake proof.",Medium,In Progress
+Phase 3 – Identity & Trust,DID/VC Integration,Link DID/VC credential,"As a creator I want to link my DID or Verifiable Credential so others trust I am who I claim.",High,Planned
+Phase 3 – Identity & Trust,DID/VC Integration,Issuer allow-lists,"As an enterprise I want to enforce allow-lists of credential issuers so I only accept trusted content.",High,Planned
+Phase 3 – Identity & Trust,Anti-Deepfake Signals,Flag AI content,"As a platform I want NFTStop to flag unverifiable/AI-generated content so I can moderate effectively.",High,Planned
+Phase 3 – Identity & Trust,Revocation & Audit Trails,Revoke NFTs,"As a compliance officer I want creators to revoke NFTs and provide an audit trail so I meet regulations.",High,Planned
+Phase 4 – Enterprise Pilot,Bulk Minting & Org Accounts,Bulk mint,"As an org I want to mint large volumes of content with SLAs so I can deploy at scale.",High,Planned
+Phase 4 – Enterprise Pilot,CMS & Platform Integrations,Auto-mint via CMS,"As a news org I want auto-minting via CMS integration so every photo/video we publish has provenance.",High,Planned
+Phase 4 – Enterprise Pilot,Reports & Compliance,Automated reports,"As a partner I want automated reports (PDF/CSV) so I can satisfy compliance requirements.",Medium,Planned
+Phase 5 – Monetization & GTM,Tiered Pricing,Free/paid minting tiers,"As a creator I want free/paid minting tiers so I can start easily and pay as I scale.",High,Planned
+Phase 5 – Monetization & GTM,Enterprise Subscriptions,Subscription packages,"As an org I want subscription packages with API credits so I can budget and forecast.",High,Planned
+Phase 5 – Monetization & GTM,Tokenization (Optional),Community tokens,"As a community member I want a credit/token model so I can align incentives and governance.",Low,Planned
+Phase 6 – Scale & Compliance,C2PA/CAI Alignment,C2PA compatibility,"As a platform I want NFTStop compatible with C2PA manifests so I can interoperate with Adobe/NYT standards.",High,Planned
+Phase 6 – Scale & Compliance,Zero-Knowledge Proofs,Privacy-preserving proofs,"As a creator I want privacy-preserving proofs so I can prove ownership without leaking data.",Medium,Planned
+Phase 6 – Scale & Compliance,Regulatory Compliance,GDPR/CCPA/KYC,"As a compliance officer I want GDPR/CCPA/KYC hooks so I meet all global requirements.",High,Planned
